@@ -11,7 +11,7 @@ class ViewController: UIViewController {
 
     
     @IBOutlet weak var myTableView: UITableView!
-    let arr = APIClient.shared.requestItems(request: <#T##APIRoute#>, onCompletion: <#T##(Result<[BaseMappable], Error>) -> Void#>)
+    let arr = APIClient.shared.requestItems(request: todoRoutes.g, onCompletion: <#T##(Result<[BaseMappable], Error>) -> Void#>)
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
