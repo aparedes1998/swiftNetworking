@@ -7,6 +7,7 @@
 
 import Foundation
 import ObjectMapper
+
 struct ToDo: ImmutableMappable {
     let id: Int
     let title: String

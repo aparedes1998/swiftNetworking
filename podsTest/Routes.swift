@@ -10,7 +10,7 @@ import Alamofire
 
 enum todoRoutes : APIRoute {
     case getTodos
-    case getTodo(id: int)
+    case getTodo(id: Int)
     
     var method: HTTPMethod { return .get }
     

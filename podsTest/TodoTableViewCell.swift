@@ -18,6 +18,7 @@ extension TodoTableViewCellDelegate {
 
 class TodoTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var todoCompleted: UILabel!
     @IBOutlet weak var todoLabel: UILabel!
     // @IBOutlet weak var numberLabel: UILabel!
         static let identifier = "TodoTableViewCell"
@@ -33,8 +34,14 @@ class TodoTableViewCell: UITableViewCell {
             // configure cell with default state
         }
         
-        func configure(info: String) {
+    func configure(info: String, completed: Bool) {
             todoLabel.text = info
+            if (completed){
+                todoCompleted.text = "+"
+            }
+            else{
+                todoCompleted.text = "-"
+            }
         }
         //
         override func setSelected(_ selected: Bool, animated: Bool) {

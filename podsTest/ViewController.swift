@@ -9,16 +9,26 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var arr : [ToDo] = []
+        
     
     @IBOutlet weak var myTableView: UITableView!
-    let arr = APIClient.shared.requestItems(request: todoRoutes.g, onCompletion: <#T##(Result<[BaseMappable], Error>) -> Void#>)
+    func handlerTodos ( result: Result<Array<ToDo>, Error>){
+        switch result {
+            case .success(let data):
+                arr = data
+            case .failure(let err):
+                print(err)
+                
+        }
+    }
     override func viewDidLoad() {
+        APIClient.shared.requestItems(request: todoRoutes.getTodos, onCompletion: handlerTodos)
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         myTableView.dataSource = self
-                myTableView.delegate = self
-                
-                myTableView.register(UINib(nibName: TodoTableViewCell.identifier, bundle: nil),forCellReuseIdentifier: TodoTableViewCell.identifier)
+        myTableView.delegate = self
+        myTableView.register(UINib(nibName: TodoTableViewCell.identifier, bundle: nil),forCellReuseIdentifier: TodoTableViewCell.identifier)
         
     }
 }
@@ -29,7 +39,7 @@ class ViewController: UIViewController {
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: TodoTableViewCell.identifier,for: indexPath) as! TodoTableViewCell
             cell.delegate = self
-            cell.configure( info:  String(arr[indexPath.row]))
+            cell.configure( info:  String(arr[indexPath.row].title) , completed: Bool(arr[indexPath.row].completed))
             return cell
         }
         
