@@ -18,10 +18,10 @@ extension TodoTableViewCellDelegate {
 
 class TodoTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var todoCompleted: UILabel!
-    @IBOutlet weak var todoLabel: UILabel!
-    // @IBOutlet weak var numberLabel: UILabel!
-        static let identifier = "TodoTableViewCell"
+    @IBOutlet var todoLabel: UILabel!
+    
+    @IBOutlet var todoCompleted: UILabel!
+    static let identifier = "TodoTableViewCell"
         
         weak var delegate: TodoTableViewCellDelegate?
         override func awakeFromNib() {

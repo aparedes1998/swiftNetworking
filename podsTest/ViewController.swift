@@ -10,13 +10,14 @@ import UIKit
 class ViewController: UIViewController {
 
     var arr : [ToDo] = []
-        
+    //let arr2 = Array(0...60)
     
     @IBOutlet weak var myTableView: UITableView!
     func handlerTodos ( result: Result<Array<ToDo>, Error>){
         switch result {
             case .success(let data):
                 arr = data
+                myTableView.reloadData()
             case .failure(let err):
                 print(err)
                 
